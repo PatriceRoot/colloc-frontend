@@ -2,22 +2,31 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const AllHouses = () => {
+const AllHouses = ({ statusFilter }) => {
   const [houses, setHouses] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchHouses = async () => {
       try {
-        fetchHouses;
         const response = await axios.get("http://localhost:3000/api/houses");
-        setHouses(response.data);
+        const filteredHouses = statusFilter
+          ? response.data.filter((house) => house.status === statusFilter)
+          : response.data;
+        setHouses(filteredHouses);
+        setLoading(false);
       } catch (error) {
-        console.error("Error fetching houses", error);
+        setError(error);
+        setLoading(false);
       }
     };
 
     fetchHouses();
-  }, []);
+  }, [statusFilter]);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error fetching houses: {error.message}</div>;
 
   return (
     <div className="house-grid">

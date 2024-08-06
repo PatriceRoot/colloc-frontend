@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 const Form = ({ title, buttonText, fields, onSubmit }) => {
   const [formData, setFormData] = useState({});
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -13,13 +14,19 @@ const Form = ({ title, buttonText, fields, onSubmit }) => {
     onSubmit(formData);
   };
 
+  const handleRememberMeChange = (e) => {
+    setShowPassword(e.target.checked);
+  };
+
   return (
     <div className="form-container">
       <form className="form" onSubmit={handleSubmit}>
         {fields.map((field, index) => (
           <input
             key={index}
-            type={field.type}
+            type={
+              field.name === "password" && showPassword ? "text" : field.type
+            }
             name={field.name}
             value={formData[field.name] || ""}
             onChange={handleChange}
@@ -28,8 +35,12 @@ const Form = ({ title, buttonText, fields, onSubmit }) => {
           />
         ))}
         <div className="remember-me">
-          <input type="checkbox" id="remember" />
-          <label htmlFor="remember">Restez connecté</label>
+          <input
+            type="checkbox"
+            id="remember"
+            onChange={handleRememberMeChange}
+          />
+          <label htmlFor="remember">Afficher le mot de passe</label>
         </div>
         <button type="submit">{buttonText}</button>
       </form>

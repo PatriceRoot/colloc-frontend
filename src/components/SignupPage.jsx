@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import Form from "./Form";
 import { Link, useNavigate } from "react-router-dom";
 
 const SignupPage = () => {
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSignup = async (formData) => {
     try {
@@ -19,11 +20,15 @@ const SignupPage = () => {
       localStorage.setItem("token", response.data.token);
       navigate("/");
     } catch (error) {
-      if (error.response && error.response.status === 400) {
-        alert(
-          "Cet utilisateur existe déjà. Veuillez essayer de vous connecter."
-        );
-        navigate("/login");
+      if (error.response && error.response.status === 401) {
+        setErrorMessage("Adresse mail ou mot de passe incorrect");
+      } else if (error.response && error.response.status === 400) {
+        if (error.response.data.error === "User already exists") {
+          alert(
+            "Cet utilisateur existe déjà. Veuillez essayer de vous connecter."
+          );
+          navigate("/login");
+        }
       } else {
         console.error("Signup failed:", error.message);
       }
@@ -47,6 +52,7 @@ const SignupPage = () => {
 
   return (
     <div className="form-content">
+      {errorMessage && <div className="error-message">{errorMessage}</div>}
       <Form
         title="Sign Up"
         buttonText="Sign Up"

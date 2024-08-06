@@ -3,15 +3,15 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
-import Login from "./pages/login.jsx";
+import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
 import Houses from "./pages/Houses.jsx";
-import Rent from "./pages/rent.jsx";
-import Buy from "./pages/buy.jsx";
+import Rent from "./pages/Rent.jsx";
+import Buy from "./pages/Buy.jsx";
 import AddHouse from "./pages/AddHouse.jsx";
 import Contact from "./pages/Contact.jsx";
 import AdminLoginForm from "./components/Connection.jsx";
-import SingleHouse from "./pages/singleHouse.jsx";
+import SingleHouse from "./pages/SingleHouse.jsx";
 import { HouseProvider } from "./context/house.context.jsx";
 
 const router = createBrowserRouter([

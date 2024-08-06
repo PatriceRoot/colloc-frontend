@@ -1,16 +1,18 @@
 import React from "react";
-import DotsLoader from "../components/DotsLoader";
 import Navbar from "../components/Navbar";
+import AllHouses from "../components/allHouses";
+import Footer from "../components/Footer";
+import SearchSection from "../components/SearchSection";
 
-const Rent = () => {
+const Buy = () => {
   return (
     <>
       <Navbar />
-      <div className="load">
-        <DotsLoader />
-      </div>
+      <SearchSection />
+      <AllHouses statusFilter="Location" />
+      <Footer />
     </>
   );
 };
 
-export default Rent;
+export default Buy;
