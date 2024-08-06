@@ -9,7 +9,7 @@ const LoginPage = () => {
   const handleLogin = async (formData) => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/users/register",
+        "https://colloc-backend.onrender.com/api/users/register",
         {
           email: formData.email,
           password: formData.password,

@@ -30,7 +30,7 @@ const HouseForm = () => {
     const token = localStorage.getItem("token");
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/houses",
+        "https://colloc-backend.onrender.com/api/houses",
         formData,
         {
           headers: { Authorization: `Bearer ${token}` },

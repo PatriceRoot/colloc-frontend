@@ -11,7 +11,7 @@ const HouseDetail = () => {
     const fetchHouse = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/houses/${id}`
+          `https://colloc-backend.onrender.com/api/houses/${id}`
         );
         setHouse(response.data);
       } catch (error) {

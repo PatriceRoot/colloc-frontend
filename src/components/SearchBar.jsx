@@ -9,7 +9,7 @@ const SearchBar = () => {
   const handleSearch = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/api/houses/search",
+        "https://colloc-backend.onrender.com/api/houses/search",
         {
           params: { query },
         }

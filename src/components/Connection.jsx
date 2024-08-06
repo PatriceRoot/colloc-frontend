@@ -14,7 +14,7 @@ const AdminLoginForm = () => {
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/admin/login",
+        "https://colloc-backend.onrender.com/api/admin/login",
         data
       );
       localStorage.setItem("token", response.data.token);

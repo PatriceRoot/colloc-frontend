@@ -10,7 +10,9 @@ const AllHouses = ({ statusFilter }) => {
   useEffect(() => {
     const fetchHouses = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/houses");
+        const response = await axios.get(
+          "https://colloc-backend.onrender.com/api/houses"
+        );
         const filteredHouses = statusFilter
           ? response.data.filter((house) => house.status === statusFilter)
           : response.data;
